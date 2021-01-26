@@ -27,8 +27,8 @@
 
 "" Appearance {{{
     "" Line Numbers
-    set rnu " relative line numbers
-    autocmd FileType * set rnu
+    set nu rnu " relative line numbers
+    autocmd FileType * set nu rnu
 
     "" Misc
     set cursorline
