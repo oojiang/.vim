@@ -109,6 +109,31 @@
     "" scroll the viewport faster
     nnoremap <C-e> 3<C-e>
     nnoremap <C-y> 3<C-y>
+
+    "" autocomplete
+    " ^x^n for JUST this file
+    " ^x^f for filenames (works with our path trick!)
+    " ^x^] for tags only
+    " ^n for anything specified by the 'complete' option
+    " ^e to cancel
+
+    nnoremap <leader>v :call Wrap_mode_on()<cr>
+    function Wrap_mode_on()
+        nnoremap <silent> j gj
+        nnoremap <silent> k gk
+        nnoremap <silent> ^ g^
+        nnoremap <silent> $ g$
+        nnoremap <leader>v :call Wrap_mode_off()<cr>
+    endfunction
+
+    function Wrap_mode_off()
+        nnoremap <silent> j j
+        nnoremap <silent> k k
+        nnoremap <silent> ^ ^
+        nnoremap <silent> $ $
+        nnoremap <leader>v :call Wrap_mode_on()<cr>
+    endfunction
+
 "" }}}
 
 "" Plugins {{{
@@ -173,13 +198,13 @@
             augroup end
 
             function! s:show_documentation()
-            if (index(['vim','help'], &filetype) >= 0)
-                execute 'h '.expand('<cword>')
-            elseif (coc#rpc#ready())
-                call CocActionAsync('doHover')
-            else
-                execute '!' . &keywordprg . " " . expand('<cword>')
-            endif
+                if (index(['vim','help'], &filetype) >= 0)
+                    execute 'h '.expand('<cword>')
+                elseif (coc#rpc#ready())
+                    call CocActionAsync('doHover')
+                else
+                    execute '!' . &keywordprg . " " . expand('<cword>')
+                endif
             endfunction
         endif
     "" }}}
@@ -195,6 +220,20 @@
         endif
     ""}}
     call plug#end()
+
+    "" ctags {{{
+        Plug 'craigemery/vim-autotag' " autoupdate tags
+
+        " Use `ctags` in terminal to generate a tags file.
+        " :tag ClassName    jumps to the definition of ClassName
+        " :tn               Moves to the next definition
+        " :tp               Moves to the previous definition
+        " :ts               Lists all definitions
+        " ^]                Jump to definition under cursor
+        " ^t                Jump back from definition
+        " ^W }              Preview definition under cursor
+        " g[                See all definitions under cursor
+    "" }}}
 "" }}}
 
 "" Colorscheme {{{
