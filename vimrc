@@ -27,8 +27,8 @@
 
 "" Appearance {{{
     "" Line Numbers
-    set relativenumber " relative line numbers
-    autocmd FileType * set relativenumber
+    set rnu " relative line numbers
+    autocmd FileType * set rnu
 
     "" Misc
     set cursorline
@@ -75,7 +75,7 @@
     set expandtab " tabs are spaces
 
     "" cold folding settings
-    set foldmethod=indent " fold based on indent
+    set foldmethod=manual " fold based on indent
     set foldlevelstart=99
     set foldnestmax=20 "deepest fold is 20 levels
     set nofoldenable " don't fold by default
@@ -117,6 +117,8 @@
     " ^n for anything specified by the 'complete' option
     " ^e to cancel
 
+
+    "" visual wrap movement behavior
     nnoremap <leader>v :call Wrap_mode_on()<cr>
     function Wrap_mode_on()
         nnoremap <silent> j gj
@@ -125,7 +127,6 @@
         nnoremap <silent> $ g$
         nnoremap <leader>v :call Wrap_mode_off()<cr>
     endfunction
-
     function Wrap_mode_off()
         nnoremap <silent> j j
         nnoremap <silent> k k
@@ -133,7 +134,6 @@
         nnoremap <silent> $ $
         nnoremap <leader>v :call Wrap_mode_on()<cr>
     endfunction
-
 "" }}}
 
 "" Plugins {{{
@@ -148,7 +148,7 @@
     "" FZF {{{
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
-        map <leader>f :FZF<CR>
+        map <leader>t :FZF<CR>
     "" }}}
 
     "" coc {{{
@@ -234,6 +234,9 @@
         " ^W }              Preview definition under cursor
         " g[                See all definitions under cursor
     "" }}}
+
+    "" Move until char changes
+    source ~/.vim/plugins/move_until_char_changes.vim
 "" }}}
 
 "" Colorscheme {{{
