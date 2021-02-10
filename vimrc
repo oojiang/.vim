@@ -11,6 +11,9 @@
     set timeoutlen=1000
     set ttimeoutlen=5
 
+    set noswapfile
+    set autoread
+
     "" Searching
     set ignorecase  " case insensitive searching
     set smartcase " case-sensitive if expression contains a capital letter
@@ -68,9 +71,9 @@
     
     "" Tab control
     set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-    set tabstop=4 " number of visual spaces per TAB
-    set softtabstop=4 " number of spaces in tab when editing
-    set shiftwidth=4  " number of spaces that < and > insert and delete.
+    set tabstop=2 " number of visual spaces per TAB
+    set softtabstop=2 " number of spaces in tab when editing
+    set shiftwidth=2  " number of spaces that < and > insert and delete.
     set shiftround  " round indent to a multiple of 'shiftwidth'
     set expandtab " tabs are spaces
 
@@ -117,22 +120,21 @@
     " ^n for anything specified by the 'complete' option
     " ^e to cancel
 
-
     "" visual wrap movement behavior
     nnoremap <leader>v :call Wrap_mode_on()<cr>
     function Wrap_mode_on()
-        nnoremap <silent> j gj
-        nnoremap <silent> k gk
-        nnoremap <silent> ^ g^
-        nnoremap <silent> $ g$
-        nnoremap <leader>v :call Wrap_mode_off()<cr>
+        noremap <silent> j gj
+        noremap <silent> k gk
+        noremap <silent> ^ g^
+        noremap <silent> $ g$
+        noremap <leader>v :call Wrap_mode_off()<cr>
     endfunction
     function Wrap_mode_off()
-        nnoremap <silent> j j
-        nnoremap <silent> k k
-        nnoremap <silent> ^ ^
-        nnoremap <silent> $ $
-        nnoremap <leader>v :call Wrap_mode_on()<cr>
+        noremap <silent> j j
+        noremap <silent> k k
+        noremap <silent> ^ ^
+        noremap <silent> $ $
+        noremap <leader>v :call Wrap_mode_on()<cr>
     endfunction
 "" }}}
 
